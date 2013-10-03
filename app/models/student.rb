@@ -1,6 +1,8 @@
 require_relative '../../db/config'
 
 class Student < ActiveRecord::Base
+  has_many :roster, :foreign_key => :student_id
+  has_many :teachers, :through => :rosters
 
   validates :age, numericality: { only_integer: true,
     greater_than_or_equal_to: 5}
@@ -10,11 +12,11 @@ class Student < ActiveRecord::Base
   validate :phone_num_must_be_atleast_ten_digits
 
   def name
-    self.first_name + " " + self.last_name
+    first_name + " " + last_name
   end
 
   def age
-    (Date.today - self.birthday).to_i / 365
+    Date.today.year - birthday.year
   end
 
   def phone_num_must_be_atleast_ten_digits
@@ -27,5 +29,3 @@ class Student < ActiveRecord::Base
 end
 
 # at least 10 digits
-
-

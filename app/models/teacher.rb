@@ -1,6 +1,8 @@
 require_relative '../../db/config'
 
 class Teacher < ActiveRecord::Base
+  has_many :rosters, :foreign_key => :teacher_id
+  has_many :students, :through => :rosters
 
   validates :email, format: { with: /.+@\w{1,}.\w{2,}/,
     message: "Must have at least 2 characters before between and after the @ sign and ." }
