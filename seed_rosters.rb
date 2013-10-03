@@ -13,7 +13,7 @@ teachers = Teacher.all
 #     # puts "Teacher_id: #{teacher.id.to_i}"
 #     Roster.create!(student_id: student.id.to_i,
 #                             teacher_id: teacher.id.to_i)
-#   end
+#   e
 # end
 
 # p Roster.all
